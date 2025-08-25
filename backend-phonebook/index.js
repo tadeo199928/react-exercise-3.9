@@ -76,6 +76,11 @@ app.post('/persons', (request, response) => {
     response.json(person)
 })
 
+const path = require('path')
+app.get('*', (request, response) => {
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
+
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
