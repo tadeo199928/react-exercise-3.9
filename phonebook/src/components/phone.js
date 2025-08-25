@@ -1,7 +1,7 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/persons'
+const baseUrl = '/persons'
 const cors = require('cors')
-app.use
+app.use(cors())
 
 const getAll = () => {
   const request = axios.get(baseUrl)
