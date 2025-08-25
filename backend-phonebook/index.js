@@ -77,6 +77,18 @@ app.post('/api/persons', (request, response) => {
     response.json(person)
 })
 
+app.put('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  const body = request.body
+  const person = persons.find(p => p.id === id)
+  if (person) {
+      const updatedPerson = { ...body, id: id }
+      persons = persons.map(p => p.id === id ? updatedPerson : p)
+      response.json(updatedPerson)
+  } else {
+      response.status(404).end()
+  }
+})
 
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))

@@ -1,7 +1,5 @@
 import axios from 'axios'
 const baseUrl = '/api/persons'
-const cors = require('cors')
-app.use(cors())
 
 const getAll = () => {
   const request = axios.get(baseUrl)

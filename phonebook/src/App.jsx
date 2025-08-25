@@ -49,7 +49,7 @@ const App = () => {
           }
         ).catch(error => {
           setError(`Failed to update ${newName} has already been remove from the server`);
-          setPersons(persons.filter(p => p.id !== person.id));
+          setSuccess(null); 
         });
 
       }
