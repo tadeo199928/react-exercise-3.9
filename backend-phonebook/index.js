@@ -2,6 +2,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 
@@ -34,12 +35,12 @@ let persons = [
 ]
 
 
-app.get('/persons', (request, response) => {
+app.get('/api/persons', (request, response) => {
   response.json(persons)
 })
 
 
-app.get('/persons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response) => {
     const id = request.params.id
     const person = persons.find(p => p.id === id)
     if (person) {
@@ -49,13 +50,13 @@ app.get('/persons/:id', (request, response) => {
     }
 })
 
-app.delete('/persons/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
     persons = persons.filter(p => p.id !== id)
     response.status(204).end() 
 })
 
-app.post('/persons', (request, response) => {
+app.post('/api/persons', (request, response) => {
     const body = request.body
 
     if (!body.name || !body.number) {
@@ -76,7 +77,7 @@ app.post('/persons', (request, response) => {
     response.json(person)
 })
 
-const path = require('path')
+
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 })
